@@ -1,0 +1,81 @@
+.header{
+    height: 64px;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Inter", sans-serif;
+
+    &__logo{
+        color: #2563eb;
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-left: 2rem;
+    }
+
+    &__search{
+        display: flex;
+        align-items: center;
+        width: 40%;
+        max-width: 400px;
+
+        input{
+            flex: 1;
+            height: 36px;
+            padding: 0 12px;
+            border: 1px solid #e5e7eb;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        button {
+            height: 36px;
+            width: 40px;
+            background: #14b8a6;
+            border: none;
+            color: white;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+        
+
+    &__right{
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    &__icon{
+        color: #6b7280;
+        cursor: pointer;
+    }
+
+        &__profile{
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        &__user{
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: #374151;
+            margin-right: 40px;
+        }
+
+        &__text{
+            margin-top: 5px;
+        }
+}
+
