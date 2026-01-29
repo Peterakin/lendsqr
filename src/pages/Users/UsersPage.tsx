@@ -10,6 +10,16 @@ const UsersPage = () => {
     const [loading, setLoading] = useState(true);
     const [openAction, setOpenAction] = useState<number | null>(null);
 
+    const [showFilter, setShowFilter] = useState(false)
+    const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+
+    const [filters, setFilters] = useState({
+        organization: "",
+        username: "",
+        email: "",
+        dateJoined: "",
+        status: "",
+    });
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -19,6 +29,7 @@ const UsersPage = () => {
                 );
 
                 setUsers(res.data.users);
+                setFilteredUsers(res.data.users);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -28,6 +39,48 @@ const UsersPage = () => {
 
         fetchUsers();
     }, []);
+
+    const handleApplyFilter = () => {
+        let temp = [...users];
+
+        if (filters.organization) {
+            temp = temp.filter((u) =>
+                u.organization.toLowerCase().includes(filters.organization.toLowerCase())
+            );
+        }
+
+        if (filters.username) {
+            temp = temp.filter((u) =>
+                u.username.toLowerCase().includes(filters.username.toLowerCase())
+            );
+        }
+
+        if (filters.email) {
+            temp = temp.filter((u) =>
+                u.email.toLowerCase().includes(filters.email.toLowerCase())
+            );
+        }
+
+        if (filters.status) {
+            temp = temp.filter((u) => u.status === filters.status);
+        }
+
+        setFilteredUsers(temp);
+        setShowFilter(false);
+    };
+
+    const handleResetFilter = () => {
+        setFilters({
+            organization: "",
+            username: "",
+            email: "",
+            dateJoined: "",
+            status: "",
+        });
+        setFilteredUsers(users);
+        setShowFilter(false);
+    };
+
 
     if (loading) return <p>Loading...</p>;
 
@@ -62,46 +115,26 @@ const UsersPage = () => {
                 <table className="users__table">
                     <thead>
                         <tr>
-                            <th>
-                                <div className="user__table__header">
-                                    <span>Oraganization</span>
-                                    <ListFilter size={14} />
-                                </div>
-                            </th>
-                            <th>
-                                <div className="user__table__header">
-                                    <span>Username</span>
-                                    <ListFilter size={14} />
-                                </div>
-                            </th>
-                            <th>
-                                <div className="user__table__header">
-                                    <span>Email</span>
-                                    <ListFilter size={14} />
-                                </div>
-                            </th>
-                            <th>
-                                <div className="user__table__header">
-                                    <span>Phone</span>
-                                    <ListFilter size={14} />
-                                </div>
-                            </th>
-                            <th>
-                                <div className="user__table__header">
-                                    <span>Date Joined</span>
-                                    <ListFilter size={14} />
-                                </div>
-                            </th>
-                            <th>
-                                <div className="user__table__header">
-                                    <span>Status</span>
-                                    <ListFilter size={14} />
-                                </div>
-                            </th>
+                            {[
+                                "Organization",
+                                "Username",
+                                "Email",
+                                "Phone",
+                                "Date Joined",
+                                "Status",
+                            ].map((title, i) => (
+                                <th key={i}>
+                                    <div className="user__table__header">
+                                        <span>{title}</span>
+                                        <ListFilter size={14} onClick={() => setShowFilter(true)} />
+                                    </div>
+                                </th>
+                            ))}
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
+                        {filteredUsers.map((user, index) => (
                             <tr key={index}>
                                 <td>{user.organization}</td>
                                 <td>{user.username}</td>
@@ -155,7 +188,12 @@ const UsersPage = () => {
                 </div>
             </div>
 
-            <FilterModal />
+            <FilterModal
+                show={showFilter}
+                onClose={() => setShowFilter(false)}
+                onReset={handleResetFilter}
+                onApply={handleApplyFilter}
+            />
         </div>
     )
 }
