@@ -3,6 +3,7 @@ import "./UsersPage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import type { User, UserResponse } from "../../types/user";
+import FilterModal from "../../components/FilterModal/FilterModal";
 
 const UsersPage = () => {
     const [users, setUsers] = useState<User[]>([]);
@@ -154,6 +155,7 @@ const UsersPage = () => {
                 </div>
             </div>
 
+            <FilterModal />
         </div>
     )
 }

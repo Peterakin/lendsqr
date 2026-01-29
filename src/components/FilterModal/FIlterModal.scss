@@ -1,0 +1,64 @@
+.filter__overlay{
+    position: fixed;
+    inset: 0;
+    right: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.filter__modal{
+    background: #ffffff;
+    width: 220px;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    label{
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        color: #545F7D;
+    }
+
+    input, select {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        padding: 10px;
+        font-size: 12px;
+        border: 1px solid #dcdfe8;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        outline: none;
+    }
+
+    .filter__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        button{
+            margin-top: 20px;
+            padding: 8px 14px;
+            width: 45%;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .reset {
+            background: transparent;
+            border: 1px solid #545f7d;
+            color: #545f7d;
+        }
+
+        .apply{
+            background: #39cdcc;
+            border: none;
+            color: white;
+        }
+    }
+}
