@@ -13,7 +13,7 @@ const UserDetails = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get("https://mocki.io/v1/4f7dfa1c-b8a8-4501-ac33-87523f68808e");
+            const res = await axios.get("https://mocki.io/v1/397dd580-72e7-472b-b2c7-e76d46f464bd");
             const foundUser = res.data.users.find((u: User) => u.id === id);
             setUser(foundUser);
         };
@@ -44,7 +44,7 @@ const UserDetails = () => {
                     <div className="avatar"><Users /></div>
 
                     <div className="user-id">
-                        <h3>{user.username}</h3>
+                        <h3>{user.fullName}</h3>
                         <p>{user.id}</p>
                     </div>
 
@@ -55,6 +55,7 @@ const UserDetails = () => {
                                 <Star
                                     key={i}
                                     size={14}
+                                    fill={i < user.tier ? "#f5c342" : "none"}
                                     stroke="#f5c342"
                                 />
                             ))}
@@ -62,9 +63,9 @@ const UserDetails = () => {
                     </div>
                 </div>
                 <div className="right">
-                    <h3>$200,000</h3>
+                    <h3>{user.balance}</h3>
                     <p>
-                        9912345678/Providus Bank
+                        {user.accountNumber}/{user.bank}
                     </p>
                 </div>
             </div>
@@ -90,59 +91,50 @@ const UserDetails = () => {
 
             {activeTab === "General Details" && (
                 <div className="details-content">
-                    {/* Personal Info */}
+
                     <section>
                         <h4>Personal Information</h4>
                         <div className="grid">
-                            <div><p>Full Name</p><span>{user.username}</span></div>
-                            <div><p>Phone Number</p><span>{user.phone}</span></div>
-                            <div><p>Email Address</p><span>{user.email}</span></div>
-                            <div><p>BVN</p><span>07060780922</span></div>
-                            <div><p>Gender</p><span>Male</span></div>
-                            <div><p>Marital Status</p><span>Single</span></div>
-                            <div><p>Children</p><span>None</span></div>
-                            <div><p>Type of Residence</p><span>Parent's Apartments </span></div>
+                            <div><p>Full Name</p><span>{user.fullName}</span></div>
+                            <div><p>Phone Number</p><span>{user.personalInfo.phoneNumber}</span></div>
+                            <div><p>Email Address</p><span>{user.personalInfo.email}</span></div>
+                            <div><p>BVN</p><span>{user.personalInfo.bvn}</span></div>
+                            <div><p>Gender</p><span>{user.personalInfo.gender}</span></div>
+                            <div><p>Marital Status</p><span>{user.personalInfo.maritalStatus}</span></div>
+                            <div><p>Children</p><span>{user.personalInfo.children}</span></div>
+                            <div><p>Type of Residence</p><span>{user.personalInfo.residence}</span></div>
                         </div>
                     </section>
 
-                    {/* Education */}
                     <section>
                         <h4>Education and Employment</h4>
                         <div className="grid">
-                            <div><p>Level of Education</p><span>B.Sc</span></div>
-                            <div><p>Employment Status</p><span>Employed</span></div>
-                            <div><p>Sector of Employment</p><span>Fintech</span></div>
-                            <div><p>Duration of Employment</p><span>2 years</span></div>
-                            <div><p>Office Email</p><span>{user.email}</span></div>
-                            <div><p>Monthly Income</p><span>$200,000.00-$400,000.00</span></div>
-                            <div><p>Loan Repayment</p><span>40,000</span></div>
+                            <div><p>Level of Education</p><span>{user.education.level}</span></div>
+                            <div><p>Employment Status</p><span>{user.education.employmentStatus}</span></div>
+                            <div><p>Sector of Employment</p><span>{user.education.sector}</span></div>
+                            <div><p>Duration of Employment</p><span>{user.education.duration}</span></div>
+                            <div><p>Office Email</p><span>{user.education.officeEmail}</span></div>
+                            <div><p>Monthly Income</p><span>{user.education.income}</span></div>
+                            <div><p>Loan Repayment</p><span>{user.education.loanRepayment}</span></div>
                         </div>
                     </section>
 
-                    {/* Socials */}
                     <section>
                         <h4>Socials</h4>
                         <div className="grid">
-                            <div><p>Twitter</p><span>@grace_effiom</span></div>
-                            <div><p>Facebook</p><span>Grace Effiom</span></div>
-                            <div><p>Instagram</p><span>@grace_effiom</span></div>
+                            <div><p>Twitter</p><span>{user.socials.twitter}</span></div>
+                            <div><p>Facebook</p><span>{user.socials.facebook}</span></div>
+                            <div><p>Instagram</p><span>{user.socials.instagram}</span></div>
                         </div>
                     </section>
 
-                    {/* Guarantor */}
                     <section>
                         <h4>Guarantor</h4>
                         <div className="grid">
-                            <div><p>Full Name</p><span>Debby Ogana</span></div>
-                            <div><p>Phone Number</p><span>07060780922</span></div>
-                            <div><p>Email</p><span>debby@gmail.com</span></div>
-                            <div><p>Relationship</p><span>Sister</span></div>
-                        </div>
-                        <div className="grid">
-                            <div><p>Full Name</p><span>Debby Ogana</span></div>
-                            <div><p>Phone Number</p><span>07060780922</span></div>
-                            <div><p>Email</p><span>debby@gmail.com</span></div>
-                            <div><p>Relationship</p><span>Sister</span></div>
+                            <div><p>Full Name</p><span>{user.guarantor.fullName}</span></div>
+                            <div><p>Phone Number</p><span>{user.guarantor.phoneNumber}</span></div>
+                            <div><p>Email</p><span>{user.guarantor.email}</span></div>
+                            <div><p>Relationship</p><span>{user.guarantor.relationship}</span></div>
                         </div>
                     </section>
                 </div>

@@ -5,13 +5,15 @@ import { Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
     return (
-        <div className="dashboard-layout">
-            <Sidebar />
+        <div>
+            <Header />
+            <div className="dashboard-layout">
+                <Sidebar />
 
-            <div className="dashboard-layout__main">
-                <Header />
-                <div className="dashboard-layout__content">
-                    <Outlet />
+                <div className="dashboard-layout__main">
+                    <div className="dashboard-layout__content">
+                        <Outlet />
+                    </div>
                 </div>
             </div>
         </div>

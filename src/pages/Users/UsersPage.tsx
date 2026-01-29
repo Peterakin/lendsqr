@@ -26,7 +26,7 @@ const UsersPage = () => {
         const fetchUsers = async () => {
             try {
                 const res = await axios.get<UserResponse>(
-                    "https://mocki.io/v1/4f7dfa1c-b8a8-4501-ac33-87523f68808e"
+                    "https://mocki.io/v1/397dd580-72e7-472b-b2c7-e76d46f464bd"
                 );
 
                 setUsers(res.data.users);
