@@ -4,12 +4,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import type { User, UserResponse } from "../../types/user";
 import FilterModal from "../../components/FilterModal/FilterModal";
+import { useNavigate } from "react-router-dom";
 
 const UsersPage = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const [openAction, setOpenAction] = useState<number | null>(null);
-
+    const navigate = useNavigate();
     const [showFilter, setShowFilter] = useState(false)
     const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
 
@@ -150,7 +151,7 @@ const UsersPage = () => {
                                     <MoreVertical size={16} onClick={() => setOpenAction(openAction === index ? null : index)} />
                                     {openAction === index && (
                                         <div className="action__dropdown">
-                                            <p><Eye size={16} /> View Details</p>
+                                            <p onClick={() => navigate(`/users/${user.id}`)}><Eye size={16} /> View Details</p>
                                             <p><UserRoundPlus size={16} /> Blacklist User</p>
                                             <p><UserRoundCheck size={16} /> Activate User</p>
                                         </div>
