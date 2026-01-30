@@ -1,5 +1,6 @@
-import { ArrowBigDown, ArrowDown, ArrowDown01, ArrowDownSquare, ArrowLeftRight, BadgePercent, BookDown, Briefcase, ChartColumnIncreasing, ChevronDown, Clipboard, Coins, DownloadCloud, FileDown, HandCoins, Handshake, Home, Landmark, LoaderPinwheel, MoveDown, MoveDownIcon, PiggyBank, Scroll, SlidersHorizontal, User, User2, UserCog, UserRoundCheck, UserRoundX, Users, Wallet } from "lucide-react";
+import { ArrowLeftRight, BadgePercent, Briefcase, ChartColumnIncreasing, ChevronDown, Clipboard, Coins, HandCoins, Handshake, Home, Landmark, LoaderPinwheel, PiggyBank, Scroll, SlidersHorizontal, User, UserCog, UserRoundCheck, UserRoundX, Users, Wallet } from "lucide-react";
 import "./Sidebar.scss";
+import type { JSX } from "react";
 
 type MenuItem = {
     label: string,
