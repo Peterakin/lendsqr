@@ -1,95 +1,132 @@
-.login{
+.login {
     display: flex;
     height: 100vh;
     background: #ffffff;
     font-family: "Inter", sans-serif;
 
-    &__left{
-        flex: 1;
-        padding: 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+@media (max-width: 900px) {
+    flex-direction: column; 
+    height: auto;
+    min-height: 100vh;
+}
 
-        .login__logo{
-            width: 140px;
+&__left {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: 900px) {
+        padding: 40px 20px;
+        align-items: center;
+    }
+
+    .login__logo {
+        width: 140px;
+    }
+
+    .login__image {
+        width: 100%;
+        max-width: 500px;
+        align-items: center;
+        margin-bottom: 150px;
+        margin-left: 50px;
+
+        @media (max-width: 900px) {
+            margin: 40px 0;
+            max-width: 300px;
         }
+    }
+}
 
-        .login__image{
-            width: 100%;
-            max-width: 500px;
-            align-items: center;
-            margin-bottom: 150px;
-            margin-left: 50px;
+&__right {
+    flex: 1;
+    padding: 120px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @media (max-width: 1100px) {
+        padding: 80px 50px; 
+    }
+
+    @media (max-width: 900px) {
+        padding: 40px 20px;
+        background: #fbfbfb;
+    }
+
+    h2 {
+        font-size: 40px;
+        color: #312f7d;
+        margin-bottom: 8px;
+
+        @media (max-width: 600px) {
+            font-size: 30px;
         }
     }
 
-    &__right{
-        flex: 1;
-        padding: 120px 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    p {
+        color: #545f7d;
+        margin-bottom: 40px;
+    }
+}
 
-        h2{
-            font-size: 50px;
-            color: #312f7d;
-            margin-bottom: 8px;
-        }
+&__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 
-        p{
-            color: #545f7d;
-            margin-bottom: 40px;
-        }
+    @media (max-width: 900px) {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto; 
     }
 
-    &__form{
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
+    input {
+        padding: 14px;
+        border: 1px solid #dcdfe8;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-        input{
-            padding: 14px;
-            border: 1px solid #dcdfe8;
-            border-radius: 5px;
-            font-size: 14px;
-            outline: none;
-            width: 80%;
-            padding-right: 20px;
-        }
+    .password__wrapper {
+        position: relative;
+        width: 100%;
 
-        .password__wrapper{
-            position: relative;
-            
-            span{
-                position: relative;
-                right: 10%;
-                transform: translateY(-50%);
-                font-size: 15px;
-                color: #39cdcc;
-                cursor: pointer;
-                font-weight: 600;
-            }
-        }
-
-        .forgot{
-            font-size: 12px;
+        span {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 15px;
             color: #39cdcc;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: -10px;
-        }
-
-        button{
-            margin-top: 20px;
-            padding: 14px;
-            border: none;
-            background: #39cdcc;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 8px;
             cursor: pointer;
-            width: 85%;
+            font-weight: 600;
         }
     }
+
+    .forgot {
+        font-size: 12px;
+        color: #39cdcc;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: -10px;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 14px;
+        border: none;
+        background: #39cdcc;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+    }
+}
 }
