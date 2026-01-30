@@ -8,6 +8,14 @@
     justify-content: space-between;
     font-family: "Inter", sans-serif;
 
+    
+        &__hamburger {
+            display: none;
+            cursor: pointer;
+            color: #374151;
+        }
+
+
     &__logo{
        height: 28px;
        object-fit: contain;
@@ -79,3 +87,18 @@
         }
 }
 
+@media (max-width: 768px) {
+    .header {
+        &__search {
+            display: none;
+        }
+
+        &__right {
+            gap: 1rem;
+        }
+
+        &__hamburger {
+            display: block;
+        }
+    }
+}

@@ -10,9 +10,19 @@ const UsersPage = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const [openAction, setOpenAction] = useState<number | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
     const navigate = useNavigate();
     const [showFilter, setShowFilter] = useState(false)
     const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+
+    const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
+
 
     const [filters, setFilters] = useState({
         organization: "",
@@ -26,7 +36,7 @@ const UsersPage = () => {
         const fetchUsers = async () => {
             try {
                 const res = await axios.get<UserResponse>(
-                    "https://mocki.io/v1/397dd580-72e7-472b-b2c7-e76d46f464bd"
+                    "https://mocki.io/v1/5b30cd42-1916-438a-9aa0-4772a9ae43e0"
                 );
 
                 setUsers(res.data.users);
@@ -135,7 +145,7 @@ const UsersPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredUsers.map((user, index) => (
+                        {paginatedUsers.map((user, index) => (
                             <tr key={index}>
                                 <td>{user.organization}</td>
                                 <td>{user.username}</td>
@@ -166,26 +176,53 @@ const UsersPage = () => {
                 <div className="pagination__left">
                     <span>Showing</span>
 
-                    <select>
+                    <select
+                        value={itemsPerPage}
+                        onChange={(e) => {
+                            setItemsPerPage(Number(e.target.value));
+                            setCurrentPage(1);
+                        }}
+                    >
                         <option value="10">10</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
 
-                    <span>out of 100</span>
+                    <span>out of {filteredUsers.length}</span>
+
                 </div>
 
                 <div className="pagination__right">
-                    <button className="nav-btn">{"<"}</button>
+                    <button
+                        className="nav-btn"
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    >
+                        {"<"}
+                    </button>
 
-                    <span className="page active">1</span>
-                    <span className="page">2</span>
-                    <span className="page">3</span>
-                    <span className="dots">...</span>
-                    <span className="page">15</span>
-                    <span className="page">16</span>
 
-                    <button className="nav-btn">{">"}</button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                        .slice(0, 7)
+                        .map((page) => (
+                            <span
+                                key={page}
+                                className={`page ${page === currentPage ? "active" : ""}`}
+                                onClick={() => setCurrentPage(page)}
+                            >
+                                {page}
+                            </span>
+                        ))}
+
+
+                    <button
+                        className="nav-btn"
+                        disabled={currentPage === totalPages}
+                        onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                    >
+                        {">"}
+                    </button>
+
                 </div>
             </div>
 

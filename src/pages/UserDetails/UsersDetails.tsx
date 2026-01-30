@@ -13,7 +13,7 @@ const UserDetails = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get("https://mocki.io/v1/397dd580-72e7-472b-b2c7-e76d46f464bd");
+            const res = await axios.get("https://mocki.io/v1/5b30cd42-1916-438a-9aa0-4772a9ae43e0");
             const foundUser = res.data.users.find((u: User) => u.id === id);
             setUser(foundUser);
         };

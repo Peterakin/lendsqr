@@ -124,7 +124,7 @@
 
             .grid {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(4, minmax(0, 1fr));
                 border-bottom: 1px solid #e5e7eb;
                 gap: 20px;
                 padding: 10px;
@@ -140,6 +140,46 @@
                     font-weight: 600;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .user-details {
+        padding: 15px;
+        width: 400px;
+
+        .user-summary {
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+
+            .right{
+                margin-left: 170px;
+            }
+            .left,
+            .tier {
+                border: none;
+                padding: 10px 0;
+                width: 100%;
+            }
+
+            .left {
+                flex-direction: column;
+            }
+        }
+
+        .tabs {
+            gap: 10px;
+            overflow-x: auto;
+
+            span {
+                min-width: 120px;
+            }
+        }
+
+        .details-content section .grid {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }

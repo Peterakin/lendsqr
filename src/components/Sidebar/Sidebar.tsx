@@ -13,9 +13,9 @@ type MenuSection = {
 
 const menu: MenuSection[] = [
     {
-    title: "",
-    items: [
-        {label: "Dashboard", icon: <Home size={16} />},
+        title: "",
+        items: [
+            { label: "Dashboard", icon: <Home size={16} /> },
         ],
     },
     {
@@ -28,7 +28,7 @@ const menu: MenuSection[] = [
             { label: "Savings", icon: <PiggyBank size={16} /> },
             { label: "Loan Request", icon: <HandCoins size={16} /> },
             { label: "Whitelist", icon: <UserRoundCheck size={16} /> },
-            {label: "Karma", icon: <UserRoundX size={16}/>}
+            { label: "Karma", icon: <UserRoundX size={16} /> }
         ]
     },
     {
@@ -50,17 +50,21 @@ const menu: MenuSection[] = [
         items: [
             { label: "Preference", icon: <SlidersHorizontal size={16} /> },
             { label: "Fees and Pricing", icon: <BadgePercent size={16} /> },
-            {label: "Audit Logs", icon: <Clipboard size={16}/>}
+            { label: "Audit Logs", icon: <Clipboard size={16} /> }
         ]
     }
 ]
+interface SidebarProps {
+    className?: string;
+}
 
-const Sidebar = () => {
+const Sidebar = ({ className = "" }: SidebarProps) => {
+
     return (
-        <aside className="sidebar">
+        <aside className={`sidebar ${className}`}>
             <div className="sidebar__top">
                 <span className="sidebar__switch">
-                    <Briefcase size={16}/> Switch Organization<ChevronDown/>
+                    <Briefcase size={16} /> Switch Organization<ChevronDown />
                 </span>
             </div>
 
