@@ -11,8 +11,6 @@ const Header = ({ onMenuClick }: HeaderProps) => {
 
     return (
         <header className="header">
-
-
             <div className="header__left">
                 <Menu size={22} className="header__hamburger" onClick={onMenuClick} />
                 <img src={Logo} alt="Lendsqr logo" className="header__logo" />

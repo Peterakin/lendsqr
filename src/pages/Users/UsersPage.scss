@@ -244,40 +244,41 @@
     }
 }
 
-/* MOBILE */
+
 @media (max-width: 768px) {
     .users__page {
         padding: 1rem;
     }
 
     .cards {
-        grid-template-columns: repeat(1, 1fr);
-        width: 400px;
+        grid-template-columns: repeat(2, 2fr);
+        width: 420px;
         text-align: center;
 
         .card__icon{
-            margin-left: 45%;
+            margin-left: 40%;
         }
 
         .card__icon1{
-            margin-left: 45%;
+            margin-left: 40%;
         }
 
         .card__icon2{
-            margin-left: 45%;
+            margin-left: 40%;
         }
 
         .card__icon3{
-            margin-left: 45%;
+            margin-left: 40%;
         }
     }
 
     .users__table__wrapper {
         overflow-x: auto;
+        width: 41%;
     }
 
     .users__table {
-        min-width: 800px;
+        min-width: 900px;
     }
 
     .table__pagination {
