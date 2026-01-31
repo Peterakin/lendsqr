@@ -23,14 +23,23 @@ const UsersPage = () => {
 
     const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
 
+    interface UserFilters {
+        organization: string;
+        username: string;
+        email: string;
+        status: string;
+        dateJoined: string;
+    }
 
-    const [filters, setFilters] = useState({
+
+    const [filters, setFilters] = useState<UserFilters>({
         organization: "",
         username: "",
         email: "",
-        dateJoined: "",
         status: "",
+        dateJoined: "",
     });
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -51,12 +60,14 @@ const UsersPage = () => {
         fetchUsers();
     }, []);
 
-    const handleApplyFilter = () => {
+    const handleApplyFilter = (filters: UserFilters) => {
         let temp = [...users];
 
         if (filters.organization) {
             temp = temp.filter((u) =>
-                u.organization.toLowerCase().includes(filters.organization.toLowerCase())
+                u.organization
+                    .toLowerCase()
+                    .includes(filters.organization.toLowerCase())
             );
         }
 
@@ -76,9 +87,20 @@ const UsersPage = () => {
             temp = temp.filter((u) => u.status === filters.status);
         }
 
+        if (filters.dateJoined) {
+            temp = temp.filter((u) => {
+                const userDate = new Date(u.dateJoined)
+                    .toISOString()
+                    .split("T")[0];
+                return userDate === filters.dateJoined;
+            });
+        }
+
         setFilteredUsers(temp);
+        setCurrentPage(1);
         setShowFilter(false);
     };
+
 
     const handleResetFilter = () => {
         setFilters({
@@ -89,9 +111,9 @@ const UsersPage = () => {
             status: "",
         });
         setFilteredUsers(users);
+        setCurrentPage(1);
         setShowFilter(false);
     };
-
 
     if (loading) return <p>Loading...</p>;
 
@@ -228,9 +250,9 @@ const UsersPage = () => {
 
             <FilterModal
                 show={showFilter}
-                onClose={() => setShowFilter(false)}
-                onReset={handleResetFilter}
                 onApply={handleApplyFilter}
+                onReset={handleResetFilter}
+                onClose={() => setShowFilter(false)}
             />
         </div>
     )
