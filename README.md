@@ -50,6 +50,7 @@ src/
 ├── components/
 │ ├── FilterModal/
 │ └── Sidebar/
+| |\_\_ Header/
 │
 ├── layout/
 │ └── DashboardLayout/
@@ -61,7 +62,7 @@ src/
 │
 ├── types/
 │ ├── user.ts
-│ └── filters.ts
+│
 │
 ├── App.tsx
 └── main.tsx
